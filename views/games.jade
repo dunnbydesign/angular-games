@@ -55,5 +55,4 @@ block content
             a(href="/games/" + game._id)=gamedate.slice(5, 7) + "/" + gamedate.slice(8, 10) + "/" + gamedate.slice(0, 4) + ": " + game.awayTeam + " vs. " + game.homeTeam
             button.delete-game(data-id="#{game._id}") Delete
 
-  script(type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js")
-  script(type="text/javascript" src="/js/games.js")
+  include ./partials/games_scripts.jade

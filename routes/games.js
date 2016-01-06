@@ -1,6 +1,7 @@
 'use strict'
 
 const express = require('express')
+const path = require('path')
 
 const Game = require('../models/game')
 const router = express.Router()
@@ -8,7 +9,8 @@ const router = express.Router()
 let renderGames = (req, res) => {
   Game.find({}, (error, results) => {
     if (error) throw error
-    res.render('games', { games: results })
+    res.json(results)
+    // res.render('games', { games: results })
   })
 }
 
@@ -36,7 +38,14 @@ let createDocument = source => {
 }
 
 router.get('/', (req, res, next) => {
-  renderGames(req, res)
+  res.sendFile(path.join(__dirname, '..', 'public', 'games.html'))
+})
+
+router.get('/list', (req, res, next) => {
+  Game.find({}, (error, results) => {
+    if (error) throw error
+    res.json(results)
+  })
 })
 
 router.get('/:id', (req, res, next) => {
@@ -50,8 +59,12 @@ router.get('/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
   let game = new Game(createDocument(req.body))
   game.save(err => {
-    respondWithErrors(err, res)
+    if (err) throw err
+    res.json(game)
   })
+  // game.save(err => {
+  //   respondWithErrors(err, res)
+  // })
 })
 
 router.put('/:id', (req, res, next) => {

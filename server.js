@@ -23,7 +23,8 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'jade')
 
 app.use(express.static(__dirname + '/public'))
-app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(session({
   secret: 'super secret phrase',
@@ -41,7 +42,7 @@ let ensureAuthenticated = (req, res, next) => {
 }
 
 app.use('/', routes)
-app.use('/games', ensureAuthenticated, games)
+app.use('/games', games) // app.use('/games', ensureAuthenticated, games)
 
 app.use((req, res, next) => {
   let err = new Error('Page Not Found')

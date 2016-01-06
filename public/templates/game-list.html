@@ -1,0 +1,13 @@
+<section>
+  <h2>All Games</h2>
+  <div class="container">
+    <ul class="game-list">
+      <!-- - var gamedate = new Date(game.date).toISOString() -->
+      <!-- =gamedate.slice(5, 7) + "/" + gamedate.slice(8, 10) + "/" + gamedate.slice(0, 4) + ": " + game.awayTeam + " vs. " + game.homeTeam -->
+      <li ng-repeat="game in games">
+        <a ng-click="showGameDetails(game)")>{{ game.date }} : {{ game.awayTeam }} vs. {{ game.homeTeam }}</a>
+        <button class="delete-game" ng-click="deleteGame(game, $index)">Delete</button>
+      </li>
+    </ul>
+  </div>
+</section>

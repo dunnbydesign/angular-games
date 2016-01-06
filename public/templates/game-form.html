@@ -1,0 +1,55 @@
+<section>
+  <h2>Add Game</h2>
+  <div class="container add-game">
+    <form>
+      <div>
+        <label for="sport">Sport:</label>
+        <select name="sport" ng-model="game.sport">
+          <option value="" selected disabled>Select a sport</option>
+          <option value="Basketball">Basketball</option>
+          <option value="Football">Football</option>
+          <option value="Baseball">Baseball</option>
+          <option value="Soccer">Soccer</option>
+          <option value="Hockey">Hockey</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="homeTeam">Home Team:</label>
+        <input type="text" name="homeTeam" ng-model="game.homeTeam">
+      </div>
+
+      <div>
+        <label for="awayTeam">Away Team:</label>
+        <input type="text" name="awayTeam" ng-model="game.awayTeam">
+      </div>
+
+      <div>
+        <label for="homeScore">Home Score:</label>
+        <input type="number" min=0 name="homeScore" ng-model="game.homeScore" ng-init="game.homeScore=0">
+      </div>
+
+      <div>
+        <label for="awayScore">Away Score:</label>
+        <input type="number" min=0 name="awayScore" ng-model="game.awayScore" ng-init="game.awayScore=0">
+      </div>
+
+      <div>
+        <label for="date">Date:</label>
+        <input type="date" name="date" ng-model="game.date">
+      </div>
+
+      <div ng-init="game.played='false'">
+        <label for="played">Game Over?</label>
+        <span>No</span>
+        <input type="radio" name="played" ng-model="game.played" value="false">
+        <span>Yes</span>
+        <input type="radio" name="played" ng-model="game.played" value="true">
+      </div>
+
+      <div>
+        <button class="save-game" type="button" ng-click=saveNewGame(game)>Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
