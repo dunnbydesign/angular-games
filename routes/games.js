@@ -6,13 +6,13 @@ const path = require('path')
 const Game = require('../models/game')
 const router = express.Router()
 
-let renderGames = (req, res) => {
-  Game.find({}, (error, results) => {
-    if (error) throw error
-    res.json(results)
-    // res.render('games', { games: results })
-  })
-}
+// let renderGames = (req, res) => {
+//   Game.find({}, (error, results) => {
+//     if (error) throw error
+//     res.json(results)
+//     // res.render('games', { games: results })
+//   })
+// }
 
 let respondWithErrors = (err, res) => {
   if (err) {
@@ -69,7 +69,7 @@ router.post('/', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   let updatedDoc = createDocument(req.body)
-  Game.update({ _id: req.params.id }, updatedDoc, { runValidators: true }, err => {
+  Game.update({ _id: req.params.id }, updatedDoc, err => {
     respondWithErrors(err, res)
   })
 })
